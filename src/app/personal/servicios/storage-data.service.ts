@@ -1,10 +1,38 @@
 import { Injectable } from '@angular/core';
 import { IFactoresSeleccionados } from '../modelos/genericos.modelo';
 
+declare var btoa: any;
+
 @Injectable({
   providedIn: 'root'
 })
 export class StorageDataService {
+
+  guardarListaRoles(lista: any[]) {
+    sessionStorage.setItem('LR', btoa(JSON.stringify(lista)));
+  }
+
+  listarRoles() {
+    if (sessionStorage.getItem('LR') !== null && sessionStorage.getItem('LR') !== undefined) {
+      let listEnc = sessionStorage.getItem('LR') + "";
+      return JSON.parse(atob(listEnc));
+    } else {
+      return [];
+    }
+  }
+
+  guardarListaMenus(lista: any[]) {
+    sessionStorage.setItem('MN', btoa(JSON.stringify(lista)));
+  }
+
+  listarMenus() {
+    if (sessionStorage.getItem('MN') !== null && sessionStorage.getItem('MN') !== undefined) {
+      let listEnc = sessionStorage.getItem('MN') + "";
+      return JSON.parse(atob(listEnc));
+    } else {
+      return [];
+    }
+  }
 
   guardarListaBeneficiarios(lista: any[]) {
     sessionStorage.setItem('BENEFICIARIOS', JSON.stringify(lista));

@@ -11,6 +11,8 @@ import {
 } from "@angular/common";
 
 import { FormControl } from "@angular/forms";
+import { SharedService } from "src/app/personal/servicios/shared.service";
+import { IMenu } from "src/app/personal/modelos/menu.modelo";
 declare const $: any;
 
 
@@ -20,19 +22,22 @@ declare const $: any;
   styleUrls: ["./barra-superior.component.scss"],
 })
 export class BarraSuperiorComponent implements OnInit {
+  public menuItems!: IMenu[];
   activeItem: number = 0;
   activeSubItem: number = 0;
 
   constructor(
     location: Location,
-    private readonly router: Router
+    private readonly router: Router,
+    public sharedService: SharedService
   ) {
   }
 
   ngOnInit() {
+    this.menuItems = this.sharedService.MENUS;
   }
 
-  menuItems = [
+  /*menuItems = [
     {
       title: 'Inicio',
       link: '/home',
@@ -56,7 +61,7 @@ export class BarraSuperiorComponent implements OnInit {
         { title: 'Servicio 3', link: '/services/3' }
       ]
     }
-  ];
+  ];*/
 
   logout() {
     // Lógica para cerrar sesión

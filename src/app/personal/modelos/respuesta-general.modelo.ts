@@ -1,25 +1,10 @@
-export interface IRespuestaGeneral {
-  mensaje         : string;
-  codigoRespuesta : string;
-  datos           : string;
+export interface IRespuestaIngresar<T> {
+  success: number;
+  esAutenticado: boolean;
+  token: string;
+  roles: []
 }
 
-export interface IRespuesta<T> {
-  mensaje         : string;
-  codigoRespuesta : string;
-  datos           : T;
-}
-
-export interface IRespuestaLdap {
-  mensaje: string,
-  codigoRespuesta: string,
-  datos: {
-    esAutenticado: boolean,
-    esAdministrador: boolean,
-    grupoUsuario: {
-      codigo: string,
-      valor: string,
-      descripcion: string
-    }
-  }
+export interface IRespuestaMenus<T> {
+  data: []
 }

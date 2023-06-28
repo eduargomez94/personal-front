@@ -6,21 +6,16 @@ export interface RouteInfo {
   collapse?: string;
   isCollapsed?: boolean;
   isCollapsing?: any;
-  children?: ChildrenItems[];
   href?: string;
   enable?: boolean;
 }
 
-export interface ChildrenItems {
-  path: string;
+export interface IMenu {
   title: string;
-  type?: string;
-  collapse?: string;
-  children?: ChildrenItems2[];
-  isCollapsed?: boolean;
+  link: string;
+  subItems: ISubmenu[];
 }
-export interface ChildrenItems2 {
-  path?: string;
+export interface ISubmenu {
   title?: string;
-  type?: string;
+  link?: string;
 }

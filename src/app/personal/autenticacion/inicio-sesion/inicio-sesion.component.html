@@ -16,16 +16,17 @@
               </div>
               <form>
                 <div class="form-label-group">
-                  <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required
-                    autofocus>
+                  <input type="email" id="inputEmail" name="email" [(ngModel)]="email" class="form-control"
+                    placeholder="AA" required autofocus>
                   <label for="inputEmail">Correo electrónico</label>
                 </div>
                 <div class="form-label-group">
-                  <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                  <input type="password" id="inputPassword" name="password" [(ngModel)]="password" class="form-control"
+                    placeholder="AA" required>
                   <label for="inputPassword">Contraseña</label>
                 </div>
                 <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2"
-                  type="button" (click)="openDialog()">Ingresar</button>
+                  type="button" (click)="enviarIngreso()">Ingresar</button>
                 <div class="text-center">
                   <a class="small" href="https://huykhong.com">Olvidé mi contraseña</a>
                 </div>

@@ -10,6 +10,8 @@ import { AppRoutes } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    HttpClientModule,
+    ToastrModule.forRoot({
+      positionClass: 'toast-top-right',
+      timeOut: 3000,
+      closeButton: true,
+    }),
     CommonModule,
     ComponentsModule,
     FormsModule,
