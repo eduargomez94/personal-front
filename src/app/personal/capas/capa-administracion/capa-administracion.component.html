@@ -1,0 +1,10 @@
+<app-spinner></app-spinner>
+
+<app-barra-superior></app-barra-superior>
+<div class="container-fluid" (window:resize)="isMobile()">
+  <div class="row">
+    <main role="main" [ngClass]="{'pl-md-7 pl-0': mostrarBarra}" class="main col-md-12 col-xl-12 mt-7">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>

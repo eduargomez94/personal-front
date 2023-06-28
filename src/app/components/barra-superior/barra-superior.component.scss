@@ -1,0 +1,77 @@
+.top-menu {
+  background-color: #221f43;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.logo {
+  width: 305px;
+  height: 75px;
+}
+
+.menu-list {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu-list li {
+  margin-right: 10px;
+}
+
+.menu-list li a {
+  text-decoration: none;
+  color: white;
+}
+
+.menu-list li:hover a,
+.menu-list li.active a {
+  color: #EA524E;
+}
+
+.sub-menu-list {
+  display: none;
+  position: absolute;
+  background-color: #221f43;
+  padding: 10px;
+  z-index: 999;
+  list-style: none;
+}
+
+.menu-list li:hover .sub-menu-list {
+  display: block;
+}
+
+.sub-menu-list li {
+  margin-top: 5px;
+}
+
+.sub-menu-list li a {
+  color: white;
+  text-decoration: none;
+}
+
+.sub-menu-list li:hover a,
+.sub-menu-list li.active a {
+  color: white;
+}
+
+
+.active {
+  font-weight: bold;
+}
+
+.logout-button {
+  background-color: #221f43;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+.logout-button:hover {
+  background-color: darkblue;
+}

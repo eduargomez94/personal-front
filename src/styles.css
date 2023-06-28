@@ -1,0 +1,27 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
+
+
+:root {
+    --input-padding-x: 1.5rem;
+    --input-padding-y: 0.75rem;
+}
+
+.my-dialog-class {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.my-dialog-class>.mat-dialog-container {
+    max-width: 400px;
+    /* Ancho específico para el cuadro de diálogo */
+    width: 100%;
+}

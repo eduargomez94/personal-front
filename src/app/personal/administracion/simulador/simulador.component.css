@@ -1,0 +1,39 @@
+.gris-claro {
+  color: #D3D3D3;
+}
+
+@media (min-width: 769px) and (max-width: 1370px) {
+  .container {
+    margin-top: 0px !important;
+  }
+
+  .card-header {
+    padding: 0px !important;
+  }
+
+  .azul-claro {
+    font-size: 1rem;
+  }
+
+  .gris-claro {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 769px) {
+  .container {
+    margin-top: 0px !important;
+  }
+
+  .card-header {
+    padding: 0px !important;
+  }
+
+  .azul-claro {
+    font-size: 1rem;
+  }
+
+  .gris-claro {
+    font-size: 1rem;
+  }
+}

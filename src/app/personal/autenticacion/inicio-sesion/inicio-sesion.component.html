@@ -1,0 +1,42 @@
+<div class="container-fluid">
+  <div class="row no-gutter">
+    <div class="col-md-4 col-lg-6 div-center">
+      <div>
+        <h1 class="text-white">Control de Proyectos</h1>
+        <img src="../../../assets/img/logo.jpg" alt="Logo de la empresa">
+      </div>
+    </div>
+    <div class="col-md-8 col-lg-6">
+      <div class="login d-flex align-items-center py-5">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-9 col-lg-8 mx-auto">
+              <div class="text-center">
+                <h3 class="login-heading mb-4" align=”center”>Ingreso</h3>
+              </div>
+              <form>
+                <div class="form-label-group">
+                  <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required
+                    autofocus>
+                  <label for="inputEmail">Correo electrónico</label>
+                </div>
+                <div class="form-label-group">
+                  <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                  <label for="inputPassword">Contraseña</label>
+                </div>
+                <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2"
+                  type="button" (click)="openDialog()">Ingresar</button>
+                <div class="text-center">
+                  <a class="small" href="https://huykhong.com">Olvidé mi contraseña</a>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-modal-rol *ngIf="isDialogOpen" (accepted)="onDialogAccepted($event)" (canceled)="onDialogCanceled()"
+  [dialogWidth]="dialogWidth"></app-modal-rol>

@@ -1,0 +1,199 @@
+// Form Beneficiarios
+
+.input-saludsa {
+  border-radius: 0.8rem;
+  color: #000 !important;
+  font-weight: 600;
+  background: #fff !important;
+}
+
+.modal-sm {
+  width: 600px !important;
+}
+
+.text-pag {
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+.div-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-pags {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+  margin-left: 3px;
+  margin-right: 3px;
+  width: 25px;
+  height: 25px;
+  background: #9e9d9d;
+  border-radius: 50px;
+  flex: none;
+  order: 5;
+  flex-grow: 0;
+  border-color: #ffffff;
+  color: #ffffff;
+  border-width: 0px;
+}
+
+.btn-pags:hover {
+  background-color: #c5c4c4;
+}
+
+.btn-pags:disabled {
+  background: #c5c4c4;
+  background-color: #c5c4c4;
+}
+
+.row-dialog {
+  margin: 0px !important;
+}
+
+.tag {
+  display: inline-block;
+  padding: 0 10px;
+  height: 25px;
+  font-size: 11px;
+  line-height: 25px;
+  border-radius: 25px;
+  background-color: #00338d;
+  color: white;
+  margin: 5px;
+}
+
+.tag-maternidad {
+  display: inline-block;
+  padding: 0 10px;
+  height: 25px;
+  font-size: 11px;
+  line-height: 25px;
+  border-radius: 25px;
+  background-color: #449bff;
+  color: white;
+  margin: 5px;
+}
+
+.btn-close {
+  padding-left: 5px;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.btn-add {
+  display: flex;
+  align-items: center;
+  height: 80px;
+}
+
+.btn-genero {
+  background: #dbf0fa;
+  color: #000000;
+  border-color: #dbf0fa;
+  width: 9rem;
+  border-radius: 0.6rem;
+  font-size: 1rem;
+  padding: 0.4rem 1.25rem;
+}
+
+.btn-genero-active {
+  background: #449bff;
+  color: #ffffff;
+  border-color: #449bff;
+  width: 9rem;
+  border-radius: 0.6rem;
+  font-size: 1rem;
+  padding: 0.4rem 1.25rem;
+}
+
+.scroll-container {
+  width: 350px;
+  max-height: 125px;
+  overflow-y: auto;
+}
+
+.scroll-container::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.scroll-container::-webkit-scrollbar-thumb {
+  background: #449bff;
+  border-radius: 4px;
+}
+
+.scroll-container::-webkit-scrollbar-thumb:hover {
+  background: #449bff;
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+.scroll-container::-webkit-scrollbar-thumb:active {
+  background-color: #999999;
+}
+
+.scroll-container::-webkit-scrollbar-track {
+  background: #dbf0fa;
+  border-radius: 4px;
+}
+
+.scroll-container::-webkit-scrollbar-track:hover,
+.scroll-container::-webkit-scrollbar-track:active {
+  background: #dbf0fa;
+}
+
+.border-footer {
+  border-top: 2px solid #e9ecef;
+}
+
+.label-genero {
+  color: #525f7f;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin: auto;
+  padding-left: 2rem;
+}
+
+.dialog-overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.dialog-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 4px;
+}
+
+.div-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dialog-buttons {
+  margin-top: 20px;
+  text-align: right;
+}
+
+.btns {
+  margin: 10px;
+  border-radius: 25px;
+}

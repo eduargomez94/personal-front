@@ -1,0 +1,14 @@
+<nav class="top-menu">
+  <img src="../../../assets/img/logo.jpg" alt="Logo de la empresa" class="logo">
+  <ul class="menu-list">
+    <li class="nav-item" *ngFor="let item of menuItems; let i = index" [routerLinkActive]="['active']" [class.active]="i === activeItem">
+      <a class="nav-link page-scroll" [routerLink]="item.link" (click)="activeSubItem = 0; activeItem = i">{{ item.title }}</a>
+      <ul class="sub-menu-list" *ngIf="item.subItems.length > 0">
+        <li *ngFor="let subItem of item.subItems; let j = index" [routerLinkActive]="['active']" [class.active]="i === activeItem && j === activeSubItem">
+          <a [routerLink]="subItem.link" (click)="activeSubItem = j; activeItem = i">{{ subItem.title }}</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <button class="logout-button" (click)="logout()">Cerrar sesión</button>
+</nav>
