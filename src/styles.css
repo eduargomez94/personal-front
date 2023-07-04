@@ -27,3 +27,65 @@
     /* Ancho específico para el cuadro de diálogo */
     width: 100%;
 }
+
+th {
+    font-size: 12px !important;
+}
+
+td {
+    font-size: 12px !important;
+}
+
+input {
+    font-size: 12px !important;
+}
+
+select {
+    font-size: 12px !important;
+}
+
+label {
+    font-size: 12px !important;
+}
+
+.p-inputtext {
+    font-size: 12px !important;
+}
+
+.p-component {
+    font-size: 12px !important;
+}
+
+.textError {
+    font-size: 11px !important;
+    color: #eb5757;
+    text-align: left;
+}
+
+.icon-10 {
+    font-size: 10px !important;
+}
+
+.btn-cancelar {
+    background-color: #ffffff !important;
+    border-color: #449bff !important;
+    color: #449bff !important;
+}
+
+.btn-cancelar:hover {
+    background-color: #449bff !important;
+    border-color: #449bff !important;
+    color: #fff !important;
+}
+
+.btn-guardar:hover {
+    background-color: #ffffff !important;
+    border-color: #449bff !important;
+    color: #449bff !important;
+}
+
+.btn-guardar {
+    background-color: #449bff !important;
+    border-color: #449bff !important;
+    color: #fff !important;
+}

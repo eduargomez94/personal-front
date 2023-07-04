@@ -94,3 +94,7 @@
 .text-white {
   color: white;
 }
+
+input {
+  font-size: 16px !important;
+}

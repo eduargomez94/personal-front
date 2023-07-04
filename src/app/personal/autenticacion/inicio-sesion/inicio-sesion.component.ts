@@ -64,8 +64,6 @@ export class InicioSesionComponent implements OnInit {
           }
 
           this.sharedService.ROLES = respuesta.roles;
-          console.log(this.sharedService.ROLES);
-          console.log(this.sharedService.ROLES.length);
           if (this.sharedService.ROLES.length > 1) {
             this.openDialog();            
           } else {
@@ -84,7 +82,7 @@ export class InicioSesionComponent implements OnInit {
       if (respuesta.data.length > 0) {
         let menus: IMenu[] = this.convertList(respuesta.data);
         this.sharedService.MENUS = menus;
-        this.route.navigateByUrl('/administracion/simulador/registro');
+        this.route.navigateByUrl('/administracion/empleados');
       }
     });
   }
@@ -130,22 +128,17 @@ export class InicioSesionComponent implements OnInit {
     return subItems;
   }
 
-  redireccionarIngreso() {
-    //this.route.navigateByUrl('/administracion/simulador/registro');
-  }
-
   openDialog() {
     this.isDialogOpen = true;
   }
 
-  onDialogAccepted(option: any) {
-    console.log('Opción aceptada:', option);
+  onDialogAccepted(id_rol: number) {
+    console.log('Opción aceptada:', id_rol);
     this.isDialogOpen = false;
-    this.route.navigateByUrl('/administracion/simulador/registro');
+    this.consultarMenus(id_rol);
   }
 
   onDialogCanceled() {
-    console.log('Diálogo cancelado');
     this.isDialogOpen = false;
   }
 }

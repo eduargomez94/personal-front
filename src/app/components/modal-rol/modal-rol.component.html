@@ -4,15 +4,13 @@
       <h2>Roles</h2>
     </div>
     <div class="col-md-12 col-lg-12">
-      <select class="form-control input-radius-sa">
-        <option value="option1">Opción 1</option>
-        <option value="option2">Opción 2</option>
-        <option value="option3">Opción 3</option>
+      <select class="form-control input-radius-sa" [(ngModel)]="selectedOption">
+        <option *ngFor="let rol of listaRoles" [ngValue]="rol.Id_rol">{{rol.Nombre_rol}}</option>
       </select>
     </div>
     <div class="col-md-12 col-lg-12 dialog-buttons div-center">
       <button class="btn btn-lg btn-primary btns" (click)="accept()">Aceptar</button>
-      <button class="btn btn-lg btn-primary btns" (click)="cancel()">Cancelar</button>      
+      <button class="btn btn-lg btn-primary btns" (click)="cancel()">Cancelar</button>
     </div>
   </div>
 </div>

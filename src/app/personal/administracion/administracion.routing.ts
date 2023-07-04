@@ -1,14 +1,14 @@
 import { Routes } from '@angular/router';
 import { AutenticacionGuard } from '../guards/autenticacion.guard';
-import { SimuladorComponent } from './simulador/simulador.component';
+import { EmpleadosComponent } from './tablas/empleados/empleados.component';
 
 export const RutasAdministracion: Routes = [
   {
     path: '',
     children: [
       {
-        path: 'simulador/registro',
-        component: SimuladorComponent,
+        path: 'empleados',
+        component: EmpleadosComponent,
         canActivate: [AutenticacionGuard],
         data: { paso1: true, paso2: false }
       }
