@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { AutenticacionGuard } from '../guards/autenticacion.guard';
 import { EmpleadosComponent } from './tablas/empleados/empleados.component';
+import { ProyectosComponent } from './tablas/proyectos/proyectos.component';
 
 export const RutasAdministracion: Routes = [
   {
@@ -9,8 +10,17 @@ export const RutasAdministracion: Routes = [
       {
         path: 'empleados',
         component: EmpleadosComponent,
-        canActivate: [AutenticacionGuard],
-        data: { paso1: true, paso2: false }
+        canActivate: [AutenticacionGuard]
+      }
+    ],
+  },
+  {
+    path: '',
+    children: [
+      {
+        path: 'proyectos',
+        component: ProyectosComponent,
+        canActivate: [AutenticacionGuard]
       }
     ],
   },

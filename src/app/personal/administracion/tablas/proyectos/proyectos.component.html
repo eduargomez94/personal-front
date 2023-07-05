@@ -1,0 +1,107 @@
+<h2>Directorio de Clientes</h2>
+<div class="card">
+  <p-table #dt2 [value]="proyectos" dataKey="id" [rows]="10" [showCurrentPageReport]="true"
+    [rowsPerPageOptions]="[10, 25, 50]" [loading]="loading" [paginator]="true"
+    currentPageReportTemplate="Mostrando {first} de {last} - {totalRecords} Entradas"
+    [globalFilterFields]="['Nombre_proyecto']"
+    [tableStyle]="{ 'min-width': '120rem' }">
+    <ng-template pTemplate="caption">
+      <div class="flex">
+        <span class="p-input-icon-left">
+          <i class="pi pi-search"></i>
+          <input class="p-inputtext p-component p-element" pInputText type="text"
+            (input)="dt2.filterGlobal($any($event.target).value, 'contains')" placeholder="Buscar..." />
+        </span>
+        <button class="rounded-button" (click)="openDialog(0)">
+          <i class="pi pi-plus"></i> Agregar
+        </button>
+        <button class="rounded-button btn-left" (click)="openDialog(0)">
+          <i class="pi pi-plus"></i> Agregar Proyecto
+        </button>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="width:10%">Documento</th>
+        <th style="width:12%">Nombre o razón social</th>
+        <th style="width:12%">Ubicacion</th>
+        <th style="width:12%">Dirección</th>
+        <th style="width:11%">Teléfono</th>
+        <th style="width:14%">Contacto</th>
+        <th style="width:14%">Email</th>
+        <th style="width:10%">Proyecto</th>
+        <th style="width:5%">Acciones</th>
+      </tr>
+      <tr>
+        <th>
+          <p-columnFilter type="text" field="Estado"></p-columnFilter>
+        </th>
+        <th>
+          <p-columnFilter type="text" field="Estado"></p-columnFilter>
+        </th>
+        <th>
+          <p-columnFilter type="text" field="Estado"></p-columnFilter>
+        </th>
+        <th>
+          <p-columnFilter type="text" field="Estado"></p-columnFilter>
+        </th>
+        <th>
+          <p-columnFilter type="text" field="Estado"></p-columnFilter>
+        </th>
+        <th>
+          <p-columnFilter type="text" field="Estado"></p-columnFilter>
+        </th>
+        <th>
+          <p-columnFilter type="text" field="Estado"></p-columnFilter>
+        </th>
+        <th>
+          <p-columnFilter type="text" field="Nombre_proyecto"></p-columnFilter>
+        </th>
+        <th> </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-proyecto>
+      <tr>
+        <td>
+          {{ proyecto.Estado }}
+        </td>
+        <td>
+          {{ proyecto.Estado }}
+        </td>
+        <td>
+          {{ proyecto.Estado }}
+        </td>
+        <td>
+          {{ proyecto.Estado }}
+        </td>
+        <td>
+          {{ proyecto.Estado }}
+        </td>
+        <td>
+          {{ proyecto.Estado }}
+        </td>
+        <td>
+          {{ proyecto.Estado }}
+        </td>
+        <td>
+          {{ proyecto.Nombre_proyecto }}
+        </td>
+        <td style="text-align: center;">
+          <span style="text-align: center;">
+            <button pButton type="button" pTooltip="Editar" (click)="openDialog(proyecto.Id_proyecto)"
+            class="p-button-rounded p-button-warning p-ripple p-button p-component p-button-icon-only btn-size">
+              <i class="pi pi-pencil"></i>
+            </button>
+          </span>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="5">Empleados no encontrados.</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<app-modal-empleado *ngIf="isDialogOpen" [idEmpleado]="idEmpleado" (accepted)="onDialogAccepted()" (canceled)="onDialogCanceled()"></app-modal-empleado>

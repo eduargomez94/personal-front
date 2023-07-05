@@ -9,11 +9,13 @@ import { DropdownModule } from 'primeng/dropdown';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { EmpleadosComponent } from './tablas/empleados/empleados.component';
 import { ModalEmpleadoComponent } from './dialogos/modal-empleado/modal-empleado.component';
+import { ProyectosComponent } from './tablas/proyectos/proyectos.component';
 
 @NgModule({
   declarations: [
     EmpleadosComponent,
-    ModalEmpleadoComponent
+    ModalEmpleadoComponent,
+    ProyectosComponent
   ],
   imports: [
     CommonModule,

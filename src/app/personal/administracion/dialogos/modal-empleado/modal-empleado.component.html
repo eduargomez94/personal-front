@@ -230,7 +230,7 @@
             <div class="col-9">
               <div class="form-group">
                 <select id="salud" formControlName="salud" class="form-control input-radius-sa">
-                  <option *ngFor="let obj of listaDocumentos" [ngValue]="obj.Id_tipo_doc">{{obj.Descripcion}}</option>
+                  <option *ngFor="let obj of listaSalud" [ngValue]="obj.Id_entidad">{{obj.Nombre}}</option>
                 </select>
 
                 <div class="textError" *ngIf="salud!.invalid && (salud!.dirty || salud!.touched)">
@@ -253,7 +253,7 @@
             <div class="col-9">
               <div class="form-group">
                 <select id="pension" formControlName="pension" class="form-control input-radius-sa">
-                  <option *ngFor="let obj of listaDocumentos" [ngValue]="obj.Id_tipo_doc">{{obj.Descripcion}}</option>
+                  <option *ngFor="let obj of listaPension" [ngValue]="obj.Id_entidad">{{obj.Nombre}}</option>
                 </select>
 
                 <div class="textError" *ngIf="pension!.invalid && (pension!.dirty || pension!.touched)">
@@ -276,7 +276,7 @@
             <div class="col-9">
               <div class="form-group">
                 <select id="arl" formControlName="arl" class="form-control input-radius-sa">
-                  <option *ngFor="let obj of listaDocumentos" [ngValue]="obj.Id_tipo_doc">{{obj.Descripcion}}</option>
+                  <option *ngFor="let obj of listaArl" [ngValue]="obj.Id_entidad">{{obj.Nombre}}</option>
                 </select>
 
                 <div class="textError" *ngIf="arl!.invalid && (arl!.dirty || arl!.touched)">

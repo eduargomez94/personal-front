@@ -1,9 +1,11 @@
 import { Component, OnInit, Output, EventEmitter, Input, Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ApiConstantes } from 'src/app/personal/constantes/api-personal.constantes';
 import { Empleado } from 'src/app/personal/modelos/empleado.modelo';
-import { IRoles, ITipoDocumentos, ITipoEstados } from 'src/app/personal/modelos/iniciar-sesion.modelo';
+import { IRoles, ITipoDocumentos, ITipoEstados, IEntidades } from 'src/app/personal/modelos/iniciar-sesion.modelo';
 import { IRespuestaActualizarEmpleado, IRespuestaEmpleado, IRespuestaGeneral, IRespuestaGuardarEmpleado } from 'src/app/personal/modelos/respuesta-general.modelo';
 import { EmpleadosService } from 'src/app/personal/servicios/empleados.service';
+import { EntidadesService } from 'src/app/personal/servicios/entidades.service';
 import { MensajesService } from 'src/app/personal/servicios/mensajes.service';
 import { SharedService } from 'src/app/personal/servicios/shared.service';
 
@@ -15,6 +17,9 @@ import { SharedService } from 'src/app/personal/servicios/shared.service';
 export class ModalEmpleadoComponent implements OnInit {
 
   listaRoles!: IRoles[];
+  listaPension!: IEntidades[];
+  listaSalud!: IEntidades[];
+  listaArl!: IEntidades[];
   listaDocumentos: ITipoDocumentos[] = [
     { Id_tipo_doc: 1, Descripcion: 'Cédula de ciudadanía' },
     { Id_tipo_doc: 2, Descripcion: 'NIT' },
@@ -53,11 +58,11 @@ export class ModalEmpleadoComponent implements OnInit {
   constructor(
     public sharedService: SharedService,
     private empleadosService: EmpleadosService,
-    private mensajesService: MensajesService
+    private mensajesService: MensajesService,
+    private entidadesService: EntidadesService
   ) { }
 
   ngOnInit(): void {
-    console.log(window.innerWidth);
     this.listaRoles = this.sharedService.ROLES;
 
     this.formEmpleado = new FormGroup(
@@ -109,6 +114,9 @@ export class ModalEmpleadoComponent implements OnInit {
       }
     );
 
+    this.consultarEntidades(ApiConstantes.CONSTANTES_ENTIDADES.pension);
+    this.consultarEntidades(ApiConstantes.CONSTANTES_ENTIDADES.salud);
+    this.consultarEntidades(ApiConstantes.CONSTANTES_ENTIDADES.arl);
     if (this.idEmpleado !== 0) {
       this.consultarEmpleado();
     }
@@ -257,6 +265,20 @@ export class ModalEmpleadoComponent implements OnInit {
         this.setValue("estado", this.selectedEmpleado.Estado);
 
         this.formEmpleado.valid;
+      }
+    });
+  }
+
+  consultarEntidades(tipo: string) {
+    this.entidadesService.consultarEntidades(tipo).subscribe((respuesta: IRespuestaGeneral<any[]>) => {
+      if (respuesta.data !== null && respuesta.data !== undefined) {
+        if (tipo === ApiConstantes.CONSTANTES_ENTIDADES.pension) {
+          this.listaPension = respuesta.data;
+        } else if (tipo === ApiConstantes.CONSTANTES_ENTIDADES.salud) {
+          this.listaSalud = respuesta.data;
+        } else if (tipo === ApiConstantes.CONSTANTES_ENTIDADES.arl) {
+          this.listaArl = respuesta.data;
+        }
       }
     });
   }

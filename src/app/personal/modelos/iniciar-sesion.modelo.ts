@@ -20,3 +20,9 @@ export interface ITipoEstados {
   codigo: string;
   descripcion: string;
 }
+
+export interface IEntidades {
+  Nombre: string;
+  Tipo: string;
+  Id_entidad: number;
+}
