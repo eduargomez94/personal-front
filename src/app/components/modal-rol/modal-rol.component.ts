@@ -1,14 +1,19 @@
-import { Component, OnInit, Output, EventEmitter, Input, Inject } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Output,
+  EventEmitter,
+  Input,
+} from '@angular/core';
 import { IRoles } from 'src/app/personal/modelos/iniciar-sesion.modelo';
-import { SharedService } from 'src/app/personal/servicios/shared.service';
+import { StorageService } from 'src/app/personal/servicios/storage.service';
 
 @Component({
   selector: 'app-modal-rol',
   templateUrl: './modal-rol.component.html',
-  styleUrls: ['./modal-rol.component.scss']
+  styleUrls: ['./modal-rol.component.scss'],
 })
 export class ModalRolComponent implements OnInit {
-
   listaRoles!: IRoles[];
 
   selectedOption!: number;
@@ -17,10 +22,10 @@ export class ModalRolComponent implements OnInit {
   @Output() accepted = new EventEmitter<number>();
   @Output() canceled = new EventEmitter<void>();
 
-  constructor(public sharedService: SharedService) { }
+  constructor(public storageService: StorageService) {}
 
   ngOnInit(): void {
-    this.listaRoles = this.sharedService.ROLES;
+    this.listaRoles = this.storageService.listarRoles();
   }
 
   accept() {
@@ -30,5 +35,4 @@ export class ModalRolComponent implements OnInit {
   cancel() {
     this.canceled.emit();
   }
-
 }

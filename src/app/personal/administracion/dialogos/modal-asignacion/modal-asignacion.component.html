@@ -1,0 +1,121 @@
+<div class="dialog-overlay">
+  <div class="dialog-content" [style.width.%]="dialogWidth">
+    <form (ngSubmit)="accept()" [formGroup]="formProyecto">
+      <div class="row">
+        <div class="col-12">
+          <div class="form-group">
+            <h3>Asignación</h3>
+          </div>
+        </div>
+        <div class="col-12 scrollable-div">
+          <div class="row">
+            <div class="col-3">
+              <div class="form-group">
+                <label>Proyecto</label>
+              </div>
+            </div>
+
+            <div class="col-9">
+              <div class="form-group">
+                <select
+                  id="proyecto"
+                  formControlName="proyecto"
+                  class="form-control input-radius-sa"
+                >
+                  <option *ngFor="let obj of listaProyectos" [ngValue]="obj.id">
+                    {{ obj.nombre }}
+                  </option>
+                </select>
+
+                <div
+                  class="textError"
+                  *ngIf="
+                    proyecto!.invalid && (proyecto!.dirty || proyecto!.touched)
+                  "
+                >
+                  <p *ngIf="proyecto!.errors?.['required']">
+                    <i class="pi pi-exclamation-circle icon-10"></i>
+                    Seleccione una opción.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-3">
+              <div class="form-group">
+                <label>Fecha Inicio</label>
+              </div>
+            </div>
+
+            <div class="col-9">
+              <div class="form-group">
+                <input
+                  id="fecInicio"
+                  formControlName="fecInicio"
+                  type="date"
+                  class="form-control"
+                />
+                <div
+                  class="textError"
+                  *ngIf="
+                    fecInicio!.invalid &&
+                    (fecInicio!.dirty || fecInicio!.touched)
+                  "
+                >
+                  <p *ngIf="fecInicio!.errors?.['required']">
+                    <i class="pi pi-exclamation-circle icon-10"></i>
+                    Campo Obligatorio.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-3">
+              <div class="form-group">
+                <label>Fecha Fin</label>
+              </div>
+            </div>
+
+            <div class="col-9">
+              <div class="form-group">
+                <input
+                  id="fecFin"
+                  formControlName="fecFin"
+                  type="date"
+                  class="form-control"
+                />
+                <div
+                  class="textError"
+                  *ngIf="fecFin!.invalid && (fecFin!.dirty || fecFin!.touched)"
+                >
+                  <p *ngIf="fecFin!.errors?.['required']">
+                    <i class="pi pi-exclamation-circle icon-10"></i>
+                    Campo Obligatorio.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 dialog-buttons div-center">
+          <button
+            class="btn btn-lg btn-primary btns btn-guardar"
+            [disabled]="formProyecto.invalid"
+          >
+            Guardar
+          </button>
+          <button
+            class="btn btn-lg btn-primary btns btn-cancelar"
+            (click)="cancel()"
+          >
+            Cancelar
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,12 +1,14 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { SharedService } from '../../servicios/shared.service';
 import { FormGroup } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { MensajesService } from '../../servicios/mensajes.service';
 import { AutenticacionService } from '../../servicios/autenticacion.service';
-import { IRespuestaIngresar, IRespuestaMenus } from '../../modelos/respuesta-general.modelo';
-import { StorageDataService } from '../../servicios/storage-data.service';
+import {
+  IRespuestaIngresar,
+  IRespuestaMenus,
+} from '../../modelos/respuesta-general.modelo';
+import { StorageService } from '../../servicios/storage.service';
 import { IMenu, ISubmenu } from '../../modelos/menu.modelo';
 
 @Component({
@@ -15,7 +17,6 @@ import { IMenu, ISubmenu } from '../../modelos/menu.modelo';
   styleUrls: ['./inicio-sesion.component.css'],
 })
 export class InicioSesionComponent implements OnInit {
-
   email!: string;
   password!: string;
 
@@ -26,27 +27,24 @@ export class InicioSesionComponent implements OnInit {
 
   constructor(
     public route: Router,
-    public sharedService: SharedService,
     public mensajesService: MensajesService,
     public autenticacionService: AutenticacionService,
-    public storageDataService: StorageDataService
-  ) { }
+    public storageService: StorageService
+  ) {}
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
 
   enviarIngreso() {
     const patronCorreo = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    let error = "";
+    let error = '';
 
     if (this.mensajesService.validarVacio(this.email)) {
-      error += "Por favor ingresar correo electrónico<br>";
+      error += 'Por favor ingresar correo electrónico<br>';
     } else if (!patronCorreo.test(this.email.trim())) {
-      error += "Por favor ingresar correo electrónico valido<br>";
+      error += 'Por favor ingresar correo electrónico valido<br>';
     }
     if (this.mensajesService.validarVacio(this.password)) {
-      error += "Por favor ingresar contraseña<br>";
+      error += 'Por favor ingresar contraseña<br>';
     }
 
     if (error.length !== 0) {
@@ -55,36 +53,45 @@ export class InicioSesionComponent implements OnInit {
       this.autenticacionService.ingresar(this.email, this.password).subscribe(
         (respuesta: IRespuestaIngresar<any[]>) => {
           if (!respuesta.esAutenticado) {
-            this.mensajesService.showError("Correo electrónico o contraseña incorrectos, por favor validar");
+            this.mensajesService.showError(
+              'Correo electrónico o contraseña incorrectos, por favor validar'
+            );
             return;
           }
           if (respuesta.roles.length == 0) {
-            this.mensajesService.showError("No tiene asignado rol, por favor validar");
+            this.mensajesService.showError(
+              'No tiene asignado rol, por favor validar'
+            );
             return;
           }
 
-          this.sharedService.ROLES = respuesta.roles;
-          if (this.sharedService.ROLES.length > 1) {
-            this.openDialog();            
+          localStorage.setItem('TK_APP', respuesta.token);
+          this.storageService.guardarListaRoles(respuesta.roles);
+          if (this.storageService.listarRoles().length > 1) {
+            this.openDialog();
           } else {
-            this.consultarMenus(this.sharedService.ROLES[0].Id_rol);
+            this.consultarMenus(this.storageService.listarRoles()[0].id_rol);
           }
         },
         (error: any) => {
-          this.mensajesService.showError("Error al iniciar sesión, por favor contacta al administrador");
+          this.mensajesService.showError(
+            'Error al iniciar sesión, por favor contacta al administrador'
+          );
         }
       );
     }
   }
 
   consultarMenus(id_rol: number) {
-    this.autenticacionService.consultarMenus(id_rol).subscribe((respuesta: IRespuestaMenus<any[]>) => {
-      if (respuesta.data.length > 0) {
-        let menus: IMenu[] = this.convertList(respuesta.data);
-        this.sharedService.MENUS = menus;
-        this.route.navigateByUrl('/administracion/empleados');
-      }
-    });
+    this.autenticacionService
+      .consultarMenus(id_rol)
+      .subscribe((respuesta: IRespuestaMenus<any[]>) => {
+        if (respuesta.data.length > 0) {
+          let menus: IMenu[] = this.convertList(respuesta.data);
+          this.storageService.guardarListaMenus(menus);
+          this.route.navigateByUrl('/administracion/empleados');
+        }
+      });
   }
 
   convertList(data: any[]): IMenu[] {
@@ -94,7 +101,7 @@ export class InicioSesionComponent implements OnInit {
     let rootItems = [];
     let childrenItems = [];
     for (const item of data) {
-      const parentId = item.Id_padre;
+      const parentId = item.id_padre;
       if (parentId === null) {
         rootItems.push(item);
       } else {
@@ -104,9 +111,9 @@ export class InicioSesionComponent implements OnInit {
 
     for (const item of rootItems) {
       const menuItem: IMenu = {
-        title: item.Descripcion,
+        title: item.descripcion,
         link: item.url_menu,
-        subItems: this.getSubItems(item.Id_tarea, childrenItems)
+        subItems: this.getSubItems(item.id, childrenItems),
       };
       menuItems.push(menuItem);
     }
@@ -117,10 +124,10 @@ export class InicioSesionComponent implements OnInit {
   getSubItems(parentId: number, childrenItems: any[]): ISubmenu[] {
     const subItems: ISubmenu[] = [];
     for (const child of childrenItems) {
-      if (child.Id_padre === parentId) {
+      if (child.id_padre === parentId) {
         const subItem: ISubmenu = {
-          title: child.Descripcion,
-          link: child.url_menu
+          title: child.descripcion,
+          link: child.url_menu,
         };
         subItems.push(subItem);
       }
@@ -133,7 +140,6 @@ export class InicioSesionComponent implements OnInit {
   }
 
   onDialogAccepted(id_rol: number) {
-    console.log('Opción aceptada:', id_rol);
     this.isDialogOpen = false;
     this.consultarMenus(id_rol);
   }

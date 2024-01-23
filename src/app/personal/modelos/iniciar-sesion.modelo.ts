@@ -7,13 +7,13 @@ export interface IIniciarSesion {
 }
 
 export interface IRoles {
-  Id_rol: number;
-  Nombre_rol: string;
+  id_rol: number;
+  nombre: string;
 }
 
 export interface ITipoDocumentos {
-  Id_tipo_doc: number;
-  Descripcion: string;
+  id: number;
+  descripcion: string;
 }
 
 export interface ITipoEstados {
@@ -22,7 +22,22 @@ export interface ITipoEstados {
 }
 
 export interface IEntidades {
-  Nombre: string;
-  Tipo: string;
-  Id_entidad: number;
+  nombre: string;
+  tipo: string;
+  id: number;
+}
+
+export interface IPaises {
+  nombre: string;
+  id: number;
+}
+
+export interface ITipoProyecto {
+  descripcion: string;
+  id: number;
+}
+
+export interface IProyecto {
+  nombre: string;
+  id: number;
 }

@@ -1,0 +1,747 @@
+<div class="col-12" [ngClass]="empleados ? '' : 'margin-form'">
+  <form (ngSubmit)="accept()" [formGroup]="formEmpleado">
+    <div class="row">
+      <div class="col-12">
+        <div class="form-group">
+          <h3>Empleado</h3>
+        </div>
+      </div>
+      <div class="col-6" [ngClass]="empleados ? 'scrollable-div' : ''">
+        <div class="row">
+          <div class="col-3">
+            <div class="form-group">
+              <label class="required">Tipo de documento</label>
+            </div>
+          </div>
+
+          <div class="col-9">
+            <div class="form-group">
+              <select
+                id="tipoDoc"
+                formControlName="tipoDoc"
+                class="form-control input-radius-sa"
+              >
+                <option *ngFor="let obj of listaDocumentos" [ngValue]="obj.id">
+                  {{ obj.descripcion }}
+                </option>
+              </select>
+
+              <div
+                class="textError"
+                *ngIf="tipoDoc!.invalid && (tipoDoc!.dirty || tipoDoc!.touched)"
+              >
+                <p *ngIf="tipoDoc!.errors?.['required']">
+                  <i class="pi pi-exclamation-circle icon-10"></i>
+                  Seleccione una opción.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-3">
+            <div class="form-group">
+              <label class="required">No. Documento</label>
+            </div>
+          </div>
+
+          <div class="col-9">
+            <div class="form-group">
+              <input
+                id="noDoc"
+                formControlName="noDoc"
+                type="text"
+                class="form-control"
+              />
+              <div
+                class="textError"
+                *ngIf="noDoc!.invalid && (noDoc!.dirty || noDoc!.touched)"
+              >
+                <p *ngIf="noDoc!.errors?.['required']">
+                  <i class="pi pi-exclamation-circle icon-10"></i>
+                  Campo Obligatorio.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-3">
+            <div class="form-group">
+              <label class="required">Nombres</label>
+            </div>
+          </div>
+
+          <div class="col-9">
+            <div class="form-group">
+              <input
+                id="nombres"
+                formControlName="nombres"
+                type="text"
+                class="form-control"
+              />
+              <div
+                class="textError"
+                *ngIf="nombres!.invalid && (nombres!.dirty || nombres!.touched)"
+              >
+                <p *ngIf="nombres!.errors?.['required']">
+                  <i class="pi pi-exclamation-circle icon-10"></i>
+                  Campo Obligatorio.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-3">
+            <div class="form-group">
+              <label class="required">Apellidos</label>
+            </div>
+          </div>
+
+          <div class="col-9">
+            <div class="form-group">
+              <input
+                id="apellidos"
+                formControlName="apellidos"
+                type="text"
+                class="form-control"
+              />
+              <div
+                class="textError"
+                *ngIf="
+                  apellidos!.invalid && (apellidos!.dirty || apellidos!.touched)
+                "
+              >
+                <p *ngIf="apellidos!.errors?.['required']">
+                  <i class="pi pi-exclamation-circle icon-10"></i>
+                  Campo Obligatorio.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-3">
+            <div class="form-group">
+              <label>Email personal</label>
+            </div>
+          </div>
+
+          <div class="col-9">
+            <div class="form-group">
+              <input
+                id="emailPersonal"
+                formControlName="emailPersonal"
+                type="text"
+                class="form-control"
+              />
+              <div
+                class="textError"
+                *ngIf="
+                  emailPersonal!.invalid &&
+                  (emailPersonal!.dirty || emailPersonal!.touched)
+                "
+              >
+                <p *ngIf="emailPersonal!.errors?.['required']">
+                  <i class="pi pi-exclamation-circle icon-10"></i>
+                  Campo Obligatorio.
+                </p>
+                <p *ngIf="emailPersonal!.errors?.['email']">
+                  <i class="pi pi-exclamation-circle icon-10"></i>
+                  Digita un correo válido!
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-3">
+            <div class="form-group">
+              <label>Email corporativo</label>
+            </div>
+          </div>
+
+          <div class="col-9">
+            <div class="form-group">
+              <input
+                id="emailCorp"
+                formControlName="emailCorp"
+                type="text"
+                class="form-control"
+              />
+              <div
+                class="textError"
+                *ngIf="
+                  emailCorp!.invalid && (emailCorp!.dirty || emailCorp!.touched)
+                "
+              >
+                <p *ngIf="emailCorp!.errors?.['required']">
+                  <i class="pi pi-exclamation-circle icon-10"></i>
+                  Campo Obligatorio.
+                </p>
+                <p *ngIf="emailCorp!.errors?.['email']">
+                  <i class="pi pi-exclamation-circle icon-10"></i>
+                  Digita un correo válido!
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-3">
+            <div class="form-group">
+              <label>Celular</label>
+            </div>
+          </div>
+
+          <div class="col-9">
+            <div class="form-group">
+              <input
+                id="celular"
+                formControlName="celular"
+                type="text"
+                class="form-control"
+              />
+              <div
+                class="textError"
+                *ngIf="celular!.invalid && (celular!.dirty || celular!.touched)"
+              >
+                <p *ngIf="celular!.errors?.['required']">
+                  <i class="pi pi-exclamation-circle icon-10"></i>
+                  Campo Obligatorio.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-3">
+            <div class="form-group">
+              <label>Direccion</label>
+            </div>
+          </div>
+
+          <div class="col-9">
+            <div class="form-group">
+              <input
+                id="direccion"
+                formControlName="direccion"
+                type="text"
+                class="form-control"
+              />
+              <div
+                class="textError"
+                *ngIf="
+                  direccion!.invalid && (direccion!.dirty || direccion!.touched)
+                "
+              >
+                <p *ngIf="direccion!.errors?.['required']">
+                  <i class="pi pi-exclamation-circle icon-10"></i>
+                  Campo Obligatorio.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-3">
+            <div class="form-group">
+              <label>Hoja de vida</label>
+            </div>
+          </div>
+
+          <div class="col-7">
+            <div class="form-group">
+              <input
+                id="hojaVida"
+                formControlName="hojaVida"
+                type="text"
+                class="form-control"
+              />
+            </div>
+          </div>
+
+          <div class="col-1">
+            <div class="form-group">
+              <div class="input-wrapper">
+                <label for="fileInput" class="file-label">{{
+                  fileInputLabel
+                }}</label>
+                <input
+                  type="file"
+                  id="fileInput"
+                  (change)="onFileSelectedPdf($event)"
+                  accept=".pdf"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-1" *ngIf="pdfData">
+            <div class="form-group">
+              <button class="rounded-button" (click)="descargarPDF()">
+                <i class="pi pi-download"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-3">
+            <div class="form-group">
+              <label>Fecha de Cumpleaños</label>
+            </div>
+          </div>
+
+          <div class="col-9">
+            <div class="form-group">
+              <input
+                id="fecCumple"
+                formControlName="fecCumple"
+                type="date"
+                class="form-control"
+              />
+              <div
+                class="textError"
+                *ngIf="
+                  fecCumple!.invalid && (fecCumple!.dirty || fecCumple!.touched)
+                "
+              >
+                <p *ngIf="fecCumple!.errors?.['required']">
+                  <i class="pi pi-exclamation-circle icon-10"></i>
+                  Campo Obligatorio.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-3">
+            <div class="form-group">
+              <label>Entidad salud</label>
+            </div>
+          </div>
+
+          <div class="col-9">
+            <div class="form-group">
+              <select
+                id="salud"
+                formControlName="salud"
+                class="form-control input-radius-sa"
+              >
+                <option *ngFor="let obj of listaSalud" [ngValue]="obj.id">
+                  {{ obj.nombre }}
+                </option>
+              </select>
+
+              <div
+                class="textError"
+                *ngIf="salud!.invalid && (salud!.dirty || salud!.touched)"
+              >
+                <p *ngIf="salud!.errors?.['required']">
+                  <i class="pi pi-exclamation-circle icon-10"></i>
+                  Seleccione una opción.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-3">
+            <div class="form-group">
+              <label>Entidad pensión</label>
+            </div>
+          </div>
+
+          <div class="col-9">
+            <div class="form-group">
+              <select
+                id="pension"
+                formControlName="pension"
+                class="form-control input-radius-sa"
+              >
+                <option *ngFor="let obj of listaPension" [ngValue]="obj.id">
+                  {{ obj.nombre }}
+                </option>
+              </select>
+
+              <div
+                class="textError"
+                *ngIf="pension!.invalid && (pension!.dirty || pension!.touched)"
+              >
+                <p *ngIf="pension!.errors?.['required']">
+                  <i class="pi pi-exclamation-circle icon-10"></i>
+                  Seleccione una opción.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-3">
+            <div class="form-group">
+              <label>Entidad ARL</label>
+            </div>
+          </div>
+
+          <div class="col-9">
+            <div class="form-group">
+              <select
+                id="arl"
+                formControlName="arl"
+                class="form-control input-radius-sa"
+              >
+                <option *ngFor="let obj of listaArl" [ngValue]="obj.id">
+                  {{ obj.nombre }}
+                </option>
+              </select>
+
+              <div
+                class="textError"
+                *ngIf="arl!.invalid && (arl!.dirty || arl!.touched)"
+              >
+                <p *ngIf="arl!.errors?.['required']">
+                  <i class="pi pi-exclamation-circle icon-10"></i>
+                  Seleccione una opción.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-3">
+            <div class="form-group">
+              <label class="required">Estado</label>
+            </div>
+          </div>
+
+          <div class="col-9">
+            <div class="form-group">
+              <select
+                id="estado"
+                formControlName="estado"
+                class="form-control input-radius-sa"
+              >
+                <option *ngFor="let obj of listaEstados" [ngValue]="obj.codigo">
+                  {{ obj.descripcion }}
+                </option>
+              </select>
+
+              <div
+                class="textError"
+                *ngIf="estado!.invalid && (estado!.dirty || estado!.touched)"
+              >
+                <p *ngIf="estado!.errors?.['required']">
+                  <i class="pi pi-exclamation-circle icon-10"></i>
+                  Seleccione una opción.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-3">
+            <div class="form-group">
+              <label>Fotografia</label>
+            </div>
+          </div>
+
+          <div class="col-3">
+            <div class="form-group">
+              <div *ngIf="imageSrc" class="image-preview">
+                <img [src]="imageSrc" alt="Previsualización de la imagen" />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-6">
+            <div class="input-wrapper">
+              <label for="fileInput" class="file-label">{{
+                fileInputLabel
+              }}</label>
+              <input
+                type="file"
+                id="fileInput"
+                (change)="onFileSelected($event)"
+                accept="image/*"
+              />
+              <div class="file-name">{{ selectedFileName }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 scrollable-div">
+        <div class="cards">
+          <div class="row">
+            <div class="col-12">
+              <div class="form-group">
+                <h6>Contratación</h6>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-5">
+              <div class="form-group form-asig">
+                <label class="lbl-asig">No. de Contrato</label>
+              </div>
+            </div>
+
+            <div class="col-7">
+              <div class="form-group form-asig">
+                <label class="inp-asig">AA</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-5">
+              <div class="form-group form-asig">
+                <label class="lbl-asig">Cargo</label>
+              </div>
+            </div>
+
+            <div class="col-7">
+              <div class="form-group form-asig">
+                <label class="inp-asig">AA</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-5">
+              <div class="form-group form-asig">
+                <label class="lbl-asig">Fecha de ingreso</label>
+              </div>
+            </div>
+
+            <div class="col-7">
+              <div class="form-group form-asig">
+                <label class="inp-asig">AA</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-5">
+              <div class="form-group form-asig">
+                <label class="lbl-asig">Fecha de retiro</label>
+              </div>
+            </div>
+
+            <div class="col-7">
+              <div class="form-group form-asig">
+                <label class="inp-asig">AA</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-5">
+              <div class="form-group form-asig">
+                <label class="lbl-asig">Empresa por la que ingreso</label>
+              </div>
+            </div>
+
+            <div class="col-7">
+              <div class="form-group form-asig">
+                <label class="inp-asig">AA</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-5">
+              <div class="form-group form-asig">
+                <label class="lbl-asig">Tipo de contrato</label>
+              </div>
+            </div>
+
+            <div class="col-7">
+              <div class="form-group form-asig">
+                <label class="inp-asig">AA</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-5">
+              <div class="form-group form-asig">
+                <label class="lbl-asig">Salario convenido</label>
+              </div>
+            </div>
+
+            <div class="col-7">
+              <div class="form-group form-asig">
+                <label class="inp-asig">AA</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-5">
+              <div class="form-group form-asig">
+                <label class="lbl-asig">Bonificación</label>
+              </div>
+            </div>
+
+            <div class="col-7">
+              <div class="form-group form-asig">
+                <label class="inp-asig">AA</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-5">
+              <div class="form-group form-asig">
+                <label class="lbl-asig">Estado contrato</label>
+              </div>
+            </div>
+
+            <div class="col-7">
+              <div class="form-group form-asig">
+                <label class="inp-asig">AA</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br />
+        <div class="cards">
+          <div class="row">
+            <div class="col-12">
+              <div class="form-group">
+                <h6>Asignaciones</h6>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-5">
+              <div class="form-group form-asig">
+                <label class="lbl-asig">Proyecto</label>
+              </div>
+            </div>
+
+            <div class="col-7">
+              <div class="form-group form-asig">
+                <label class="inp-asig">AA</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-5">
+              <div class="form-group form-asig">
+                <label class="lbl-asig">Cliente</label>
+              </div>
+            </div>
+
+            <div class="col-7">
+              <div class="form-group form-asig">
+                <label class="inp-asig">AA</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-5">
+              <div class="form-group form-asig">
+                <label class="lbl-asig">Fecha de inicio</label>
+              </div>
+            </div>
+
+            <div class="col-7">
+              <div class="form-group form-asig">
+                <label class="inp-asig">AA</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-5">
+              <div class="form-group form-asig">
+                <label class="lbl-asig">Fecha finalización</label>
+              </div>
+            </div>
+
+            <div class="col-7">
+              <div class="form-group form-asig">
+                <label class="inp-asig">AA</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-5">
+              <div class="form-group form-asig">
+                <label class="lbl-asig">Estado asignación</label>
+              </div>
+            </div>
+
+            <div class="col-7">
+              <div class="form-group form-asig">
+                <label class="inp-asig">AA</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-7">
+              <label></label>
+            </div>
+            <div class="col-1 div-buttons">
+              <button
+                class="page-btn-angles btn-pags"
+                (click)="paginaAnterior()"
+                [disabled]="!disAnterior"
+              >
+                <em class="pi pi-angle-left"></em>
+              </button>
+            </div>
+            <div class="col-3">
+              <p class="text-pag">{{ pagActual }} de {{ pagTotal }}</p>
+            </div>
+            <div class="col-1 div-buttons">
+              <button
+                class="page-btn-angles btn-pags"
+                (click)="paginaSiguiente()"
+                [disabled]="!disSiguiente"
+              >
+                <em class="pi pi-angle-right"></em>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 dialog-buttons div-center">
+        <button
+          class="btn btn-lg btn-primary btns btn-guardar"
+          [disabled]="formEmpleado.invalid"
+        >
+          Guardar
+        </button>
+        <button
+          class="btn btn-lg btn-primary btns btn-cancelar"
+          (click)="cancel()"
+        >
+          Cancelar
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

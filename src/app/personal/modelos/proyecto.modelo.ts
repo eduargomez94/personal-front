@@ -1,13 +1,15 @@
 export interface Proyecto {
-    Id_proyecto?: number;
-    Id_cliente?: number;
-    Fecha_terminacion_pres?: string;
-    Id_tipo_proyecto?: number;
-    Fecha_terminacion_real?: string;
-    Fecha_inicio?: string;
-    Nombre_proyecto?: string;
-    Descripcion?: string;
-    Valor_presupuestado?: number;
-    Valor_real?: number;
-    Estado?: string;
+    id?: number;    
+    nombre?: string;
+    descripcion?: string;
+    fecha_inicio?: string;
+    fecha_fin_proyectada?: string;
+    fecha_fin_real?: string;
+    estado?: string;
+    id_tipo_proyecto?: number;
+    nombre_tipo_proyecto?: string;
+    id_cliente?: number;
+    no_documento?: string;
+    nombre_cliente?: string;
+    valor_presupuestado?: number;
 }

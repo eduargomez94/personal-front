@@ -1,91 +1,103 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import 'ngx-toastr/toastr';
+@import "ngx-toastr/toastr";
 
 @import "primeng/resources/themes/lara-light-blue/theme.css";
 @import "primeng/resources/primeng.css";
 
-
 :root {
-    --input-padding-x: 1.5rem;
-    --input-padding-y: 0.75rem;
+  --input-padding-x: 1.5rem;
+  --input-padding-y: 0.75rem;
 }
 
 .my-dialog-class {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }
 
-.my-dialog-class>.mat-dialog-container {
-    max-width: 400px;
-    /* Ancho específico para el cuadro de diálogo */
-    width: 100%;
+.my-dialog-class > .mat-dialog-container {
+  max-width: 400px;
+  /* Ancho específico para el cuadro de diálogo */
+  width: 100%;
 }
 
 th {
-    font-size: 12px !important;
+  font-size: 12px !important;
 }
 
 td {
-    font-size: 12px !important;
+  font-size: 12px !important;
 }
 
 input {
-    font-size: 12px !important;
+  font-size: 12px !important;
+}
+
+p {
+  font-size: 12px !important;
+}
+
+textarea {
+  font-size: 12px !important;
 }
 
 select {
-    font-size: 12px !important;
+  font-size: 12px !important;
 }
 
 label {
-    font-size: 12px !important;
+  font-size: 12px !important;
 }
 
 .p-inputtext {
-    font-size: 12px !important;
+  font-size: 12px !important;
 }
 
 .p-component {
-    font-size: 12px !important;
+  font-size: 12px !important;
 }
 
 .textError {
-    font-size: 11px !important;
-    color: #eb5757;
-    text-align: left;
+  font-size: 11px !important;
+  color: #eb5757;
+  text-align: left;
 }
 
 .icon-10 {
-    font-size: 10px !important;
+  font-size: 10px !important;
 }
 
 .btn-cancelar {
-    background-color: #ffffff !important;
-    border-color: #449bff !important;
-    color: #449bff !important;
+  background-color: #ffffff !important;
+  border-color: #449bff !important;
+  color: #449bff !important;
 }
 
 .btn-cancelar:hover {
-    background-color: #449bff !important;
-    border-color: #449bff !important;
-    color: #fff !important;
+  background-color: #449bff !important;
+  border-color: #449bff !important;
+  color: #fff !important;
 }
 
 .btn-guardar:hover {
-    background-color: #ffffff !important;
-    border-color: #449bff !important;
-    color: #449bff !important;
+  background-color: #ffffff !important;
+  border-color: #449bff !important;
+  color: #449bff !important;
 }
 
 .btn-guardar {
-    background-color: #449bff !important;
-    border-color: #449bff !important;
-    color: #fff !important;
+  background-color: #449bff !important;
+  border-color: #449bff !important;
+  color: #fff !important;
+}
+
+.required::after {
+  content: " *";
+  color: red;
 }

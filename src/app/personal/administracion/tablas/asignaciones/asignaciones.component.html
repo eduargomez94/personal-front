@@ -1,0 +1,352 @@
+<div class="col-12">
+  <div class="row">
+    <h2>Asignaciones</h2>
+    <div class="btns-asigs">
+      <label
+        class="btn-tarjetas"
+        (click)="clicBtns(true)"
+        [ngClass]="!isTarjetas ? 'btns-disable' : ''"
+        >Tarjetas</label
+      >
+      <label
+        class="btn-tabla"
+        (click)="clicBtns(false)"
+        [ngClass]="isTarjetas ? 'btns-disable' : ''"
+        >Tabla</label
+      >
+    </div>
+  </div>
+</div>
+<div *ngIf="isTarjetas">
+  <div class="col-12">
+    <div class="row row-asignaciones">
+      <div
+        class="card-proyecto col-4"
+        *ngFor="let item of asignaciones; let i = index"
+        [ngClass]="item.empleados.length === 0 ? 'card-empty' : ''"
+      >
+        <h5>{{ item.nombre }}</h5>
+        <p>
+          Fecha inicio: {{ item.fecha_inicio | date : "dd/MM/yyyy" }} - Fecha
+          fin: {{ item.fecha_fin_proyectada | date : "dd/MM/yyyy" }}
+          <br />Presupuesto: {{ item.valor_presupuestado | currency : "USD" }}
+          <br />Cliente: {{ item.nombre_cliente }}
+        </p>
+
+        <div class="card-empleados">
+          <div *ngFor="let emp of item.empleados; let i = index">
+            <div class="card-empleado row" [style.background]="emp.cardColor">
+              <div class="col-3 div-img">
+                <div class="form-group form-asig">
+                  <div *ngIf="emp.file_foto" class="image-preview">
+                    <img (click)="openDialog(0, emp.id)"
+                      [src]="emp.file_foto"
+                      alt="Previsualización de la imagen"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="inf-empleado col-9">
+                <div class="row">
+                  <div class="col-4">
+                    <div class="form-group form-asig">
+                      <label class="lbl-asig">Documento</label>
+                    </div>
+                  </div>
+
+                  <div class="col-8">
+                    <div class="form-group form-asig">
+                      <label
+                        class="inp-asig"
+                        [style.background]="emp.textColor"
+                        >{{ emp.no_documento }}</label
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-4">
+                    <div class="form-group form-asig">
+                      <label class="lbl-asig">Apellidos</label>
+                    </div>
+                  </div>
+
+                  <div class="col-8">
+                    <div class="form-group form-asig">
+                      <label
+                        class="inp-asig"
+                        [style.background]="emp.textColor"
+                        >{{ emp.apellidos }}</label
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-4">
+                    <div class="form-group form-asig">
+                      <label class="lbl-asig">Nombres</label>
+                    </div>
+                  </div>
+
+                  <div class="col-8">
+                    <div class="form-group form-asig">
+                      <label
+                        class="inp-asig"
+                        [style.background]="emp.textColor"
+                        >{{ emp.nombres }}</label
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-4">
+                    <div class="form-group form-asig">
+                      <label class="lbl-asig">Cargo</label>
+                    </div>
+                  </div>
+
+                  <div class="col-8">
+                    <div class="form-group form-asig">
+                      <label
+                        class="inp-asig"
+                        [style.background]="emp.textColor"
+                        >{{ emp.no_documento }}</label
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-12">
+                    <div class="form-group form-asig">
+                      <label class="lbl-asig"
+                        >Contrato No. 333 Tipo contrato: XXXXXX</label
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-proyecto col-4 card-empty" *ngIf="hasSinAsig">
+        <h5>Sin Asignación</h5>
+
+        <div class="card-empleados-sin-asig">
+          <div *ngFor="let emp of sinAsignaciones; let i = index">
+            <div class="card-empleado row" [style.background]="emp.cardColor">
+              <div class="col-3 div-img">
+                <div class="form-group form-asig">
+                  <div *ngIf="emp.file_foto" class="image-preview">
+                    <img (click)="openDialog(0, emp.id)"
+                      [src]="emp.file_foto"
+                      alt="Previsualización de la imagen"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="inf-empleado col-9">
+                <div class="row">
+                  <div class="col-4">
+                    <div class="form-group form-asig">
+                      <label class="lbl-asig">Documento</label>
+                    </div>
+                  </div>
+
+                  <div class="col-8">
+                    <div class="form-group form-asig">
+                      <label
+                        class="inp-asig"
+                        [style.background]="emp.textColor"
+                        >{{ emp.no_documento }}</label
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-4">
+                    <div class="form-group form-asig">
+                      <label class="lbl-asig">Apellidos</label>
+                    </div>
+                  </div>
+
+                  <div class="col-8">
+                    <div class="form-group form-asig">
+                      <label
+                        class="inp-asig"
+                        [style.background]="emp.textColor"
+                        >{{ emp.apellidos }}</label
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-4">
+                    <div class="form-group form-asig">
+                      <label class="lbl-asig">Nombres</label>
+                    </div>
+                  </div>
+
+                  <div class="col-8">
+                    <div class="form-group form-asig">
+                      <label
+                        class="inp-asig"
+                        [style.background]="emp.textColor"
+                        >{{ emp.nombres }}</label
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-4">
+                    <div class="form-group form-asig">
+                      <label class="lbl-asig">Cargo</label>
+                    </div>
+                  </div>
+
+                  <div class="col-8">
+                    <div class="form-group form-asig">
+                      <label
+                        class="inp-asig"
+                        [style.background]="emp.textColor"
+                        >{{ emp.no_documento }}</label
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-12">
+                    <div class="form-group form-asig">
+                      <label class="lbl-asig"
+                        >Contrato No. 333 Tipo contrato: XXXXXX</label
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card" *ngIf="!isTarjetas">
+  <p-table
+    #dt2
+    [value]="asignacionesTabla"
+    dataKey="id"
+    [rows]="10"
+    [showCurrentPageReport]="true"
+    [rowsPerPageOptions]="[10, 25, 50]"
+    [loading]="loading"
+    [paginator]="true"
+    currentPageReportTemplate="Mostrando {first} de {last} - {totalRecords} Entradas"
+    [globalFilterFields]="[
+      'no_documento',
+      'apellidos',
+      'nombres',
+      'email_corporativo'
+    ]"
+    [tableStyle]="{ 'min-width': '95rem' }"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="width: 15%">Documento</th>
+        <th style="width: 15%">Nombres</th>
+        <th style="width: 15%">Apellidos</th>
+        <th style="width: 15%">Proyecto</th>
+        <th style="width: 15%">Fecha Inicio</th>
+        <th style="width: 15%">Fecha Fin</th>
+        <th style="width: 10%">Acciones</th>
+      </tr>
+      <tr>
+        <th>
+          <p-columnFilter type="text" field="no_documento"></p-columnFilter>
+        </th>
+        <th>
+          <p-columnFilter type="text" field="nombres"></p-columnFilter>
+        </th>
+        <th>
+          <p-columnFilter type="text" field="apellidos"></p-columnFilter>
+        </th>
+        <th>
+          <p-columnFilter type="text" field="nombre_proyecto"></p-columnFilter>
+        </th>
+        <th>
+          <p-columnFilter type="text" field="cargo_actual"></p-columnFilter>
+        </th>
+        <th>
+          <p-columnFilter type="text" field="num_contrato"></p-columnFilter>
+        </th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-asignacion>
+      <tr>
+        <td>
+          {{ asignacion.no_documento }}
+        </td>
+        <td>
+          {{ asignacion.nombres }}
+        </td>
+        <td>
+          {{ asignacion.apellidos }}
+        </td>
+        <td>
+          {{ asignacion.nombre_proyecto }}
+        </td>
+        <td>
+          {{ asignacion.fecha_inicio }}
+        </td>
+        <td>
+          {{ asignacion.fecha_fin }}
+        </td>
+        <td style="text-align: center">
+          <span style="text-align: center">
+            <button
+              pButton
+              type="button"
+              pTooltip="Asignar Proyecto"
+              (click)="openDialog(0, asignacion.id_empleado)"
+              class="p-button-rounded p-button-success p-ripple p-button p-component p-button-icon-only btn-size"
+            >
+              <i class="pi pi-plus"></i>
+            </button>
+            <button
+              *ngIf="asignacion.id !== 0"
+              pButton
+              type="button"
+              pTooltip="Editar"
+              (click)="openDialog(asignacion.id, 0)"
+              class="p-button-rounded p-button-warning p-ripple p-button p-component p-button-icon-only btn-size"
+            >
+              <i class="pi pi-pencil"></i>
+            </button>
+          </span>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="5">Asignaciones no encontradas.</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<app-modal-asignacion
+  *ngIf="isDialogOpen"
+  [idEmpleado]="idEmpleado"
+  [id]="id"
+  (accepted)="onDialogAccepted()"
+  (canceled)="onDialogCanceled()"
+></app-modal-asignacion>

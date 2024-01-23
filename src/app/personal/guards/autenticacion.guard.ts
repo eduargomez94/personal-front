@@ -1,18 +1,16 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
-import { StorageDataService } from '../servicios/storage-data.service';
+import { StorageService } from '../servicios/storage.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AutenticacionGuard implements CanActivate {
+  constructor(
+    private readonly storageService: StorageService,
+    private readonly router: Router
+  ) {}
 
-  constructor(private readonly storageService: StorageDataService, private readonly router: Router) { }
-
-  /**
-    * Katary Software Factory
-    * @author: Ivonne C. Barco
-    */
   canActivate(): boolean {
     if (!this.storageService.usuarioActivo()) {
       sessionStorage.clear();
@@ -22,5 +20,4 @@ export class AutenticacionGuard implements CanActivate {
     }
     return true;
   }
-
 }

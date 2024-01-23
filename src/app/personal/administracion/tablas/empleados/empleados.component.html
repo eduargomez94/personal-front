@@ -3,8 +3,8 @@
   <p-table #dt2 [value]="empleados" dataKey="id" [rows]="10" [showCurrentPageReport]="true"
     [rowsPerPageOptions]="[10, 25, 50]" [loading]="loading" [paginator]="true"
     currentPageReportTemplate="Mostrando {first} de {last} - {totalRecords} Entradas"
-    [globalFilterFields]="['No_documento', 'Apellidos', 'Nombres', 'Email_corporativo']"
-    [tableStyle]="{ 'min-width': '120rem' }">
+    [globalFilterFields]="['no_documento', 'apellidos', 'nombres']"
+    [tableStyle]="{ 'min-width': '95rem' }">
     <ng-template pTemplate="caption">
       <div class="flex">
         <span class="p-input-icon-left">
@@ -25,67 +25,32 @@
         <th style="width:12%">Email Corporativo</th>
         <th style="width:11%">Celular</th>
         <th style="width:14%">Dirección</th>
-        <th style="width:14%">Proyecto</th>
-        <th style="width:10%">N° Contrato</th>
         <th style="width:5%">Acciones</th>
-      </tr>
-      <tr>
-        <th>
-          <p-columnFilter type="text" field="No_documento"></p-columnFilter>
-        </th>
-        <th>
-          <p-columnFilter type="text" field="Apellidos"></p-columnFilter>
-        </th>
-        <th>
-          <p-columnFilter type="text" field="Nombres"></p-columnFilter>
-        </th>
-        <th>
-          <p-columnFilter type="text" field="Email_corporativo"></p-columnFilter>
-        </th>
-        <th>
-          <p-columnFilter type="text" field="Celular"></p-columnFilter>
-        </th>
-        <th>
-          <p-columnFilter type="text" field="Direccion"></p-columnFilter>
-        </th>
-        <th>
-          <p-columnFilter type="text" field="Hoja_vida"></p-columnFilter>
-        </th>
-        <th>
-          <p-columnFilter type="text" field="Hoja_vida"></p-columnFilter>
-        </th>
-        <th> </th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-empleado>
       <tr>
         <td>
-          {{ empleado.No_documento }}
+          {{ empleado.no_documento }}
         </td>
         <td>
-          {{ empleado.Apellidos }}
+          {{ empleado.apellidos }}
         </td>
         <td>
-          {{ empleado.Nombres }}
+          {{ empleado.nombres }}
         </td>
         <td>
-          {{ empleado.Email_corporativo }}
+          {{ empleado.email_corporativo }}
         </td>
         <td>
-          {{ empleado.Celular }}
+          {{ empleado.celular }}
         </td>
         <td>
-          {{ empleado.Direccion }}
-        </td>
-        <td>
-          {{ empleado.Hoja_vida }}
-        </td>
-        <td>
-          {{ empleado.Hoja_vida }}
+          {{ empleado.direccion }}
         </td>
         <td style="text-align: center;">
           <span style="text-align: center;">
-            <button pButton type="button" pTooltip="Editar Meta" (click)="openDialog(empleado.Id_empleado)"
+            <button pButton type="button" pTooltip="Editar Meta" (click)="openDialog(empleado.id)"
             class="p-button-rounded p-button-warning p-ripple p-button p-component p-button-icon-only btn-size">
               <i class="pi pi-pencil"></i>
             </button>

@@ -35,7 +35,7 @@
 }
 
 .scrollable-div {
-  height: 460px;
+  height: auto;
   overflow-y: auto;
 }
 
@@ -171,7 +171,5 @@ input[type="file"] {
 }
 
 @media (min-width: 1367px) {
-  .scrollable-div {
-    height: 580px;
-  }
+  
 }

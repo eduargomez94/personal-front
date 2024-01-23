@@ -1,95 +1,139 @@
-<h2>Directorio de Clientes</h2>
+<h2>Proyectos</h2>
 <div class="card">
-  <p-table #dt2 [value]="proyectos" dataKey="id" [rows]="10" [showCurrentPageReport]="true"
-    [rowsPerPageOptions]="[10, 25, 50]" [loading]="loading" [paginator]="true"
+  <p-table
+    #dt2
+    [value]="proyectos"
+    dataKey="id"
+    [rows]="10"
+    [showCurrentPageReport]="true"
+    [rowsPerPageOptions]="[10, 25, 50]"
+    [loading]="loading"
+    [paginator]="true"
     currentPageReportTemplate="Mostrando {first} de {last} - {totalRecords} Entradas"
     [globalFilterFields]="['Nombre_proyecto']"
-    [tableStyle]="{ 'min-width': '120rem' }">
+    [tableStyle]="{ 'min-width': '95rem' }"
+  >
     <ng-template pTemplate="caption">
       <div class="flex">
-        <span class="p-input-icon-left">
-          <i class="pi pi-search"></i>
-          <input class="p-inputtext p-component p-element" pInputText type="text"
-            (input)="dt2.filterGlobal($any($event.target).value, 'contains')" placeholder="Buscar..." />
-        </span>
         <button class="rounded-button" (click)="openDialog(0)">
           <i class="pi pi-plus"></i> Agregar
-        </button>
-        <button class="rounded-button btn-left" (click)="openDialog(0)">
-          <i class="pi pi-plus"></i> Agregar Proyecto
         </button>
       </div>
     </ng-template>
     <ng-template pTemplate="header">
       <tr>
-        <th style="width:10%">Documento</th>
-        <th style="width:12%">Nombre o razón social</th>
-        <th style="width:12%">Ubicacion</th>
-        <th style="width:12%">Dirección</th>
-        <th style="width:11%">Teléfono</th>
-        <th style="width:14%">Contacto</th>
-        <th style="width:14%">Email</th>
-        <th style="width:10%">Proyecto</th>
-        <th style="width:5%">Acciones</th>
+        <th style="width: 15%">Documento Cliente</th>
+        <th style="width: 15%">Nombre Cliente</th>
+        <th style="width: 15%">Nombre Proyecto</th>
+        <th style="width: 15%">Tipo Proyecto</th>
+        <th style="width: 15%">Fecha Inicio</th>
+        <th style="width: 15%">Fecha Fin Proyectada</th>
+        <th style="width: 10%">Acciones</th>
       </tr>
       <tr>
         <th>
-          <p-columnFilter type="text" field="Estado"></p-columnFilter>
+          <p-columnFilter type="text" field="no_documento"></p-columnFilter>
         </th>
         <th>
-          <p-columnFilter type="text" field="Estado"></p-columnFilter>
+          <p-columnFilter
+            field="nombre_cliente"
+            matchMode="in"
+            [showMenu]="false"
+          >
+            <ng-template
+              pTemplate="filter"
+              let-value
+              let-filter="filterCallback"
+            >
+              <p-multiSelect
+                [ngModel]="value"
+                [options]="clientes"
+                placeholder=""
+                (onChange)="filter($event.value)"
+                optionLabel="nombre_cliente"
+                optionValue="nombre_cliente"
+              >
+                <ng-template let-option pTemplate="item">
+                  <div class="p-multiselect-representative-option">
+                    <span class="ml-1">{{ option.nombre_cliente }}</span>
+                  </div>
+                </ng-template>
+              </p-multiSelect>
+            </ng-template>
+          </p-columnFilter>
         </th>
         <th>
-          <p-columnFilter type="text" field="Estado"></p-columnFilter>
+          <p-columnFilter type="text" field="nombre"></p-columnFilter>
         </th>
         <th>
-          <p-columnFilter type="text" field="Estado"></p-columnFilter>
+          <p-columnFilter
+            field="nombre_tipo_proyecto"
+            matchMode="in"
+            [showMenu]="false"
+          >
+            <ng-template
+              pTemplate="filter"
+              let-value
+              let-filter="filterCallback"
+            >
+              <p-multiSelect
+                [ngModel]="value"
+                [options]="tipoProyectos"
+                placeholder=""
+                (onChange)="filter($event.value)"
+                optionLabel="nombre_tipo_proyecto"
+                optionValue="nombre_tipo_proyecto"
+              >
+                <ng-template let-option pTemplate="item">
+                  <div class="p-multiselect-representative-option">
+                    <span class="ml-1">{{ option.nombre_tipo_proyecto }}</span>
+                  </div>
+                </ng-template>
+              </p-multiSelect>
+            </ng-template>
+          </p-columnFilter>
         </th>
         <th>
-          <p-columnFilter type="text" field="Estado"></p-columnFilter>
+          <p-columnFilter type="text" field="fecha_inicio"></p-columnFilter>
         </th>
         <th>
-          <p-columnFilter type="text" field="Estado"></p-columnFilter>
+          <p-columnFilter
+            type="text"
+            field="fecha_fin_proyectada"
+          ></p-columnFilter>
         </th>
-        <th>
-          <p-columnFilter type="text" field="Estado"></p-columnFilter>
-        </th>
-        <th>
-          <p-columnFilter type="text" field="Nombre_proyecto"></p-columnFilter>
-        </th>
-        <th> </th>
+        <th></th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-proyecto>
       <tr>
         <td>
-          {{ proyecto.Estado }}
+          {{ proyecto.no_documento }}
         </td>
         <td>
-          {{ proyecto.Estado }}
+          {{ proyecto.nombre_cliente }}
         </td>
         <td>
-          {{ proyecto.Estado }}
+          {{ proyecto.nombre }}
         </td>
         <td>
-          {{ proyecto.Estado }}
+          {{ proyecto.nombre_tipo_proyecto }}
         </td>
         <td>
-          {{ proyecto.Estado }}
+          {{ proyecto.fecha_inicio }}
         </td>
         <td>
-          {{ proyecto.Estado }}
+          {{ proyecto.fecha_fin_proyectada }}
         </td>
-        <td>
-          {{ proyecto.Estado }}
-        </td>
-        <td>
-          {{ proyecto.Nombre_proyecto }}
-        </td>
-        <td style="text-align: center;">
-          <span style="text-align: center;">
-            <button pButton type="button" pTooltip="Editar" (click)="openDialog(proyecto.Id_proyecto)"
-            class="p-button-rounded p-button-warning p-ripple p-button p-component p-button-icon-only btn-size">
+        <td style="text-align: center">
+          <span style="text-align: center">
+            <button
+              pButton
+              type="button"
+              pTooltip="Editar"
+              (click)="openDialog(proyecto.id)"
+              class="p-button-rounded p-button-warning p-ripple p-button p-component p-button-icon-only btn-size"
+            >
               <i class="pi pi-pencil"></i>
             </button>
           </span>
@@ -104,4 +148,9 @@
   </p-table>
 </div>
 
-<app-modal-empleado *ngIf="isDialogOpen" [idEmpleado]="idEmpleado" (accepted)="onDialogAccepted()" (canceled)="onDialogCanceled()"></app-modal-empleado>
+<app-modal-proyecto
+  *ngIf="isDialogOpen"
+  [idProyecto]="idProyecto"
+  (accepted)="onDialogAccepted()"
+  (canceled)="onDialogCanceled()"
+></app-modal-proyecto>
